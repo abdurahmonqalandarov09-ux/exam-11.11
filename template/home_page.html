@@ -5,15 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static "home_page.css" %}">
 </head>
 <body>
-    <div>
-        <h1>
-            Welcome to the Biblioteka library!!!
-        </h1>
-    </div>
-    <div>
-        <a href="{% static url "add_category" %}"><button>Add category</button></a>
+    <div class="container">
+        <h1>Библиотека</h1>
+ 
+        <div class="group">
+            <h2>Авторы</h2>
+            <a href="{% url 'add_author' %}">Добавить автора</a>
+            <a href="{% url 'show_authors' %}">Список авторов</a>
+        </div>
+ 
+        <div class="group">
+            <h2>Книги</h2>
+            <a href="{% url 'add_books' %}">Добавить книгу</a>
+            <a href="{% url 'show_books' %}">Список книг</a>
+        </div>
+ 
+        <div class="group">
+            <h2>Заказы</h2>
+            <a href="{% url 'create_order' %}">Создать заказ</a>
+            <a href="{% url 'show_orders' %}">Список заказов</a>
+        </div>
     </div>
 </body>
 </html>

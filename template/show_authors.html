@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "show_authors.css" %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Список авторов</h1>
+ 
+        <div class="top">
+            <a class="btn add" href="{% url 'add_author' %}">+ Добавить автора</a>
+        </div>
+ 
+        <table>
+            <tr>
+                <th>№</th>
+                <th>ФИО</th>
+                <th>Возраст</th>
+                <th>Действия</th>
+            </tr>
+ 
+            {% for a in author %}
+                <tr>
+                    <td>{{ a.id }}</td>
+                    <td>{{ a.full_name }}</td>
+                    <td>{{ a.age }}</td>
+                    <td>
+                        <a class="btn edit" href="{% url 'update_author' a.id %}">Изменить</a>
+                        <a class="btn delete" href="{% url 'delete_author' a.id %}">Удалить</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4" class="empty">Авторов пока нет.</td>
+                </tr>
+            {% endfor %}
+        </table>
+ 
+        <a class="back" href="{% url 'home_page' %}">← На главную</a>
+    </div>
+</body>
+</html>

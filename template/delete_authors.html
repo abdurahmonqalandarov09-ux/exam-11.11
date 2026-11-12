@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "delete_author.css" %}">
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h1>Удалить автора?</h1>
+            <p>Вы точно хотите удалить «{{ author.full_name }}»? Все его книги тоже будут удалены.</p>
+ 
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit">Да, удалить</button>
+            </form>
+        </div>
+ 
+        <a class="back" href="{% url 'show_authors' %}">Отмена</a>
+    </div>
+</body>
+</html>

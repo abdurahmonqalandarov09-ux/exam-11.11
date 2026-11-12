@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "delete_book.css" %}">
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h1>Удалить книгу?</h1>
+            <p>Вы точно хотите удалить «{{ book.name }}»?</p>
+ 
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit">Да, удалить</button>
+            </form>
+        </div>
+ 
+        <a class="back" href="{% url 'show_books' %}">Отмена</a>
+    </div>
+</body>
+</html>

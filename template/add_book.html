@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "add_book.css" %}">
+</head>
+<body>
+   
+    <div class="container">
+        <h1>Добавить книгу</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Название книги" required>
+            <input type="text" name="ganre" placeholder="Жанр" required>
+            <input type="number" name="price" placeholder="Цена" step="0.01" min="0" required>
+            <textarea name="caption" placeholder="Описание" required></textarea>
+            <input type="text" name="publisher" placeholder="Издательство" required>
+
+            <select name="author" required>
+                {% for i in authors %}
+                    <option value="{{ i.id }}">{{ i.full_name }}</option>
+                {% endfor %}
+            </select>
+
+            <input type="file" name="picture" accept="image/*">
+            <button type="submit">Сохранить</button>
+        </form>
+
+        <a href="{% url 'home_page' %}">← На главную</a>
+    </div>
+</body>
+</html>
+</body>
+</html>

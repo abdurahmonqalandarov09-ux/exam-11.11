@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить книгу</title>
+    <link rel="stylesheet" href="{% static 'show_book.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Список книг</h1>
+ 
+        <div class="top">
+            <a class="btn add" href="{% url 'add_books' %}">+ Добавить книгу</a>
+        </div>
+ 
+        <table>
+            <tr>
+                <th>Фото</th>
+                <th>Название</th>
+                <th>Жанр</th>
+                <th>Автор</th>
+                <th>Цена</th>
+                <th>Издательство</th>
+                <th>Действия</th>
+            </tr>
+ 
+            {% for b in book %}
+                <tr>
+                    <td>
+                        {% if b.picture %}
+                            <img src="{{ b.picture.url }}" alt="{{ b.name }}">
+                        {% endif %}
+                    </td>
+                    <td>{{ b.name }}</td>
+                    <td>{{ b.ganre }}</td>
+                    <td>{{ b.author.full_name }}</td>
+                    <td>{{ b.price }}</td>
+                    <td>{{ b.publisher }}</td>
+                    <td>
+                        <a class="btn edit" href="{% url 'update_book' b.id %}">Изменить</a>
+                        <a class="btn delete" href="{% url 'delete_book' b.id %}">Удалить</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="7" class="empty">Книг пока нет.</td>
+                </tr>
+            {% endfor %}
+        </table>
+ 
+        <a class="back" href="{% url 'home_page' %}">← На главную</a>
+    </div>
+</body>
+</html>
